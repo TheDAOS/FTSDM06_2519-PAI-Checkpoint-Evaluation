@@ -12,7 +12,7 @@ export interface todoType {
 }
 
 export interface taskProp {
-    task: todoType
+  task: todoType;
 }
 
 export interface stateType {

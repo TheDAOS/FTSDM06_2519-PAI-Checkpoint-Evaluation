@@ -1,13 +1,23 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import type { stateType, todoType } from "../type"
 import Card from "./Card";
+import { useEffect } from "react";
+import { getData, getDataFromLocal } from "../redux/todoSlice";
 
 function TodoList() {
-    const todo = useSelector((state: stateType) => state.todo)
+    const { todo, loading } = useSelector((state: stateType) => state)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getData())
+        dispatch(getDataFromLocal())
+    }, [])
 
     return (
         <div>
-            {todo.map((task: todoType) => <Card task={task}/>)}
+            {loading && <p>Loading...</p>}
+            {!loading && todo.length <= 0 && <p>No Data Found</p>}
+            {todo.map((task: todoType) => <Card task={task} />)}
         </div>
     )
 }
