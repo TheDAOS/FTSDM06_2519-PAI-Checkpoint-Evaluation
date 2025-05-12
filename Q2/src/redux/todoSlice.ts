@@ -15,6 +15,7 @@ const todoSlice = createSlice({
     todo: [],
     loading: false,
     error: null,
+    page: 1,
   },
   reducers: {
     toggleTask: (state, action) => {
@@ -45,6 +46,14 @@ const todoSlice = createSlice({
       alert("Added Task");
       localStorage.setItem("todo", JSON.stringify(state.todo));
     },
+    nextPage: (state) => {
+      state.page++;
+    },
+    prevPage: (state) => {
+      if (state.page > 1) {
+        state.page--;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -63,5 +72,6 @@ const todoSlice = createSlice({
   },
 });
 
-export const { getDataFromLocal, addTask, toggleTask } = todoSlice.actions;
+export const { getDataFromLocal, addTask, toggleTask, nextPage, prevPage } =
+  todoSlice.actions;
 export default todoSlice.reducer;

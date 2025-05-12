@@ -19,4 +19,5 @@ export interface stateType {
   todo: todoType[];
   loading: boolean;
   error: string | null;
+  page: number;
 }
