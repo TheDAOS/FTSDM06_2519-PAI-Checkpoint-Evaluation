@@ -9,7 +9,6 @@ function TodoList() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getData())
         dispatch(getDataFromLocal())
     }, [])
 

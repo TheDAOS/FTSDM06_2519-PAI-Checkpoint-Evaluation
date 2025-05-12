@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import type { todoType } from "../type";
 
 export const getData = createAsyncThunk("todo/getData", async () => {
   const response = await axios.get(
@@ -16,11 +17,33 @@ const todoSlice = createSlice({
     error: null,
   },
   reducers: {
+    toggleTask: (state, action) => {
+      const todo: todoType[] = state.todo.map((task: todoType) => {
+        if (task.id === action.payload) task.completed = !task.completed;
+
+        return task;
+      });
+      localStorage.setItem("todo", JSON.stringify(todo));
+
+      state.todo = todo;
+    },
     getDataFromLocal: (state) => {
       const data = localStorage.getItem("todo");
       if (data) {
         state.todo = JSON.parse(data);
       }
+    },
+    addTask: (state, action) => {
+      const task: todoType = {
+        title: action.payload,
+        userId: 0,
+        id: 0,
+        completed: false,
+      };
+
+      state.todo.unshift(task);
+      alert("Added Task");
+      localStorage.setItem("todo", JSON.stringify(state.todo));
     },
   },
   extraReducers: (builder) => {
@@ -40,5 +63,5 @@ const todoSlice = createSlice({
   },
 });
 
-export const { getDataFromLocal } = todoSlice.actions;
+export const { getDataFromLocal, addTask, toggleTask } = todoSlice.actions;
 export default todoSlice.reducer;
