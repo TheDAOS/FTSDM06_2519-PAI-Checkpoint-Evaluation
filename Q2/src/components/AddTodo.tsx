@@ -3,11 +3,12 @@ import { useDispatch } from "react-redux";
 import { addTask } from "../redux/todoSlice";
 
 function AddTodo() {
-    const [task, setTask] = useState("");
+    const [task, setTask] = useState<string>("");
     const dispatch = useDispatch()
 
     const HandleAdd = () => {
         dispatch(addTask(task))
+        setTask('')
     }
 
     return (
