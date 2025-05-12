@@ -3,14 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const todoSlice = createSlice({
   name: "todo",
   initialState: {
-    todo: [
-      {
-        userId: 1,
-        id: 1,
-        title: "delectus aut autem",
-        completed: true,
-      },
-    ],
+    todo: [],
     loading: false,
     error: null,
   },
