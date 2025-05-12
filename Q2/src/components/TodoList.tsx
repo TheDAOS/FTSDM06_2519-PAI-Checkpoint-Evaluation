@@ -37,7 +37,7 @@ function TodoList() {
                             className="p-1 px-2 border-2 border-stone-900 rounded font-semibold hover:bg-stone-600 hover:text-stone-50"
                             onClick={() => dispatch(prevPage())}
                         >Prev Page</button>
-
+                        <span className="w-5 flex justify-center font-semibold">{page}</span>
                         <button
                             className="p-1 px-2 border-2 border-stone-900 rounded font-semibold hover:bg-stone-600 hover:text-stone-50"
                             onClick={() => dispatch(nextPage())}
