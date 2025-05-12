@@ -2,8 +2,7 @@ import { Provider } from 'react-redux'
 import store from './store';
 import type { ChildrenNodeType } from '../type';
 
-function todoProvider({ children }: ChildrenNodeType) {
-
+function TodoProvider({ children }: ChildrenNodeType) {
     return (
         <Provider store={store}>
             {children}
@@ -11,4 +10,4 @@ function todoProvider({ children }: ChildrenNodeType) {
     )
 }
 
-export default todoProvider;
+export default TodoProvider;
